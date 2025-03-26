@@ -1,4 +1,15 @@
 ###
+PUT http://localhost:8081/updateUser
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "",
+  "age": 26,
+  "teachers": []
+}
+
+###
 POST http://localhost:8081/createUser
 Content-Type: application/json
 
@@ -14,4 +25,5 @@ Accept: application/json
 ###
 GET http://localhost:8081/count
 Accept: application/json
+
 

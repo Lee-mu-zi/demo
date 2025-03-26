@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 
@@ -30,6 +31,8 @@ public class User implements Serializable {
      * 年龄
      */
     private Integer age;
+
+    private List<Teacher> teachers;
 
     private static final long serialVersionUID = 1L;
 

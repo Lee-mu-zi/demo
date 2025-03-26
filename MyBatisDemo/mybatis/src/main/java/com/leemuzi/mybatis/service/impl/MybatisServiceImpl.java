@@ -31,4 +31,9 @@ public class MybatisServiceImpl implements MybatisService {
     public boolean createUser(User user) {
         return mapper.createUser(user);
     }
+
+    @Override
+    public boolean updateUser(User user) {
+        return mapper.updateUser(user);
+    }
 }

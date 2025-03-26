@@ -14,4 +14,6 @@ public interface MybatisService {
     User getUser(int id);
 
     boolean createUser(User user);
+
+    boolean updateUser(User user);
 }

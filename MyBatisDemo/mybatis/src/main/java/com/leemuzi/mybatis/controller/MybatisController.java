@@ -3,7 +3,6 @@ package com.leemuzi.mybatis.controller;
 import com.leemuzi.mybatis.domain.User;
 import com.leemuzi.mybatis.service.MybatisService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -30,6 +29,11 @@ public class MybatisController {
     @PostMapping("/createUser")
     public boolean createUser(@RequestBody User user) {
         return mybatisService.createUser(user);
+    }
+
+    @PutMapping("/updateUser")
+    public boolean updateUser(@RequestBody User user) {
+        return mybatisService.updateUser(user);
     }
 
 }

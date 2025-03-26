@@ -13,4 +13,6 @@ public interface MybatisMapper {
     User getUser(int id);
 
     boolean createUser(@Param("users") User user);
+
+    boolean updateUser(User user);
 }
