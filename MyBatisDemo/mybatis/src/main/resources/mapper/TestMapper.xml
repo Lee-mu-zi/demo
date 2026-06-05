@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leemuzi.mybatis.mapper.TestMapper">
+    <insert id="add" parameterType="com.leemuzi.mybatis.domain.Student">
+        insert into student (name, gender, age, class_name, enrollment_date, email, phone, address)
+        values (#{name}, #{gender}, #{age}, #{className}, #{enrollmentDate}, #{email}, #{phone}, #{address});
+    </insert>
+
+    <select id="count" resultType="java.lang.Integer">
+        select count(*)
+        from student;
+    </select>
+
+</mapper>

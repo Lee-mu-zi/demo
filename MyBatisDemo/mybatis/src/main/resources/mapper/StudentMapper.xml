@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.leemuzi.mybatis.mapper.StudentMapper">
+
+    <resultMap id="StudentAndCourseResultMap" type="com.leemuzi.mybatis.dto.StudentAndCourseDTO">
+        <id property="id" column="s_id"/>
+        <result property="name" column="name"/>
+        <result property="gender" column="gender"/>
+        <result property="age" column="age"/>
+        <result property="className" column="class_name"/>
+        <result property="enrollmentDate" column="enrollment_date"/>
+        <result property="email" column="email"/>
+        <result property="phone" column="phone"/>
+        <result property="address" column="address"/>
+        <collection property="courseList" ofType="com.leemuzi.mybatis.domain.Course">
+            <id property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="credit" column="credit"/>
+            <result property="hours" column="hours"/>
+            <result property="description" column="description"/>
+        </collection>
+    </resultMap>
+    <select id="selectAll" resultMap="StudentAndCourseResultMap">
+        SELECT *
+        FROM student s
+                 INNER JOIN student_course sc ON s.s_id = sc.student_id
+                 INNER JOIN course c ON sc.course_id = c.id
+    </select>
+
+</mapper>

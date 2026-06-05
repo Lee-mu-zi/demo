@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.leemuzi.mybatis.mapper.DepartmentMapper">
+    
+    <resultMap id="DepartmentAndTeachersResultMap" type="com.leemuzi.mybatis.dto.DepartmentAndTeachersDTO">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="deanId" column="dean_id"/>
+        <result property="location" column="location"/>
+        <result property="establishDate" column="establish_date"/>
+        <collection property="teachers" ofType="com.leemuzi.mybatis.domain.Teacher">
+            <id property="id" column="t_id"/>
+            <result property="name" column="name"/>
+            <result property="gender" column="gender"/>
+            <result property="age" column="age"/>
+            <result property="title" column="title"/>
+            <result property="department" column="department"/>
+            <result property="email" column="email"/>
+            <result property="phone" column="phone"/>
+            <result property="hireDate" column="hire_date"/>
+        </collection>
+    </resultMap>
+    <select id="selectDepartmentAndTeachersById" resultMap="DepartmentAndTeachersResultMap">
+        select
+            *
+        from department d
+                 left join teacher t on d.name = t.department
+        where d.id = #{departmentId}
+    </select>
+</mapper>

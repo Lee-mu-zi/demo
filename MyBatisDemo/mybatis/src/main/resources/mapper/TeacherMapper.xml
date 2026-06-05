@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leemuzi.mybatis.mapper.TeacherMapper">
+
+
+    <insert id="insertTeacher" parameterType="com.leemuzi.mybatis.domain.Teacher">
+        insert into teacher (id, name, gender, age, title, department, email, phone, hire_date)
+        values (#{id}, #{name}, #{gender}, #{age}, #{title}, #{department}, #{email}, #{phone}, #{hireDate})
+    </insert>
+
+    <delete id="deleteTeacherById" parameterType="int">
+        delete
+        from teacher
+        where id = #{id}
+    </delete>
+
+    <update id="updateTeacherById" parameterType="com.leemuzi.mybatis.domain.Teacher">
+        update teacher
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="age != null">age = #{age},</if>
+            <if test="title != null">title = #{title},</if>
+            <if test="department != null">department = #{department},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="hireDate != null">hire_date = #{hireDate},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="selectTeacherById" resultType="com.leemuzi.mybatis.domain.Teacher" parameterType="int">
+        select *
+        from teacher
+        where id = #{id}
+    </select>
+    <select id="selectTeachersByRange" resultType="com.leemuzi.mybatis.domain.Teacher">
+        select * from teacher
+        <where>
+            <if test="begin != -1">
+                and age &gt;= #{begin}
+            </if>
+            <if test="end != -1">
+                and age &lt;= #{end}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectTeachersByLimit" resultType="com.leemuzi.mybatis.domain.Teacher">
+        select * from teacher limit #{limit} offset #{offset}
+    </select>
+
+    <select id="countTeachersByTitle" resultType="com.leemuzi.mybatis.dto.TeacherTitleCountDTO">
+        select title, count(*) as totalCount
+        from teacher group by title
+    </select>
+
+
+</mapper>
